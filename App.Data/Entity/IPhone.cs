@@ -7,7 +7,7 @@ namespace App.Data.Entity
 {
     public class IPhone
     {
-        public int iPhoneID { get; set; }
+        public int IphoneID { get; set; }
         public string ModelName { get; set; }
         public DateTime RealaseDate { get; set; }
         public double ScreenSize { get; set; }
@@ -15,6 +15,11 @@ namespace App.Data.Entity
         public string RAM { get; set; }
         public string Battery { get; set; }
         public string ImageUrl  { get; set; }
-        public double Price { get; set; }
+       
+        //Nav. props. for related comments and dealers
+        public ICollection<Comment> Comments { get; set; }
+
+        public ICollection<DealerIphone> DealerIphones { get; set; }
+
     }
 }

@@ -12,5 +12,8 @@ namespace App.Data.Entity
         public string Surname { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        //Navigation prop. for related comments
+        public ICollection<Comment> Comments { get; set; }
     }
 }
