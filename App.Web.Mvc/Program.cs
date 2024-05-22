@@ -1,3 +1,5 @@
+using App.Business.Services;
+using App.Business.Services.Abstracts;
 using App.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +13,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("Default");
     options.UseSqlServer(connectionString);
 });
+
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IDealerService, DealerService>();
+builder.Services.AddTransient<IiphoneService, IphoneService>();
 
 var app = builder.Build();
 
