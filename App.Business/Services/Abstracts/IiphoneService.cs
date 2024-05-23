@@ -1,9 +1,4 @@
 ﻿using App.Data.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Business.Services.Abstracts
 {
@@ -15,5 +10,6 @@ namespace App.Business.Services.Abstracts
         public bool DeleteIphone(IPhone iphone);
         public bool DeleteIphoneByID(int id);
         public IPhone GetIPhoneWithPriceAndDealers(int id);
+        public List<IPhone> GetAllIPhonesWithPriceAndDealers();
     }
 }

@@ -13,7 +13,7 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <img class="card-img-top" src="~/img/iphone_12.jpg" alt="..." />
+                        <img class="card-img-top" src="~/img/@item.ImageUrl" alt="..." />
                         <!-- Product details-->
                         <div class="card-body p-4">
                             
@@ -21,7 +21,11 @@
                                 <!-- Product name-->
                                 <h5 class="fw-bolder">@item.ModelName</h5>
                                 <!-- Product price-->
-                                $40.00 - $80.00
+                               @foreach (var dealerIphone in item.DealerIphones)
+                                {
+                                            @dealerIphone.Price 
+                               }
+                                
                             </div>
                         </div>
                         <!-- Product actions-->

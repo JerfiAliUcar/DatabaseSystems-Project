@@ -1,12 +1,8 @@
 ﻿using App.Business.Services.Abstracts;
 using App.Data;
 using App.Data.Entity;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+//using System.Data.Entity;
 
 namespace App.Business.Services
 {
@@ -58,6 +54,16 @@ namespace App.Business.Services
                 .FirstOrDefault(i => i.IphoneID == id);
 
             return iphone;
+        }
+
+        public List<IPhone> GetAllIPhonesWithPriceAndDealers()
+        {
+            var iphones = _db.Iphone
+                .Include(i => i.DealerIphones)
+                .ThenInclude(di => di.Dealer)
+                .ToList();
+            
+            return iphones;
         }
     }
 }
