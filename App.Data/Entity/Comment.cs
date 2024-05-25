@@ -10,7 +10,7 @@ namespace App.Data.Entity
         public int CommentID { get; set; }
         public int UserID { get; set; }
         public int iPhoneID { get; set; }
-        public string CommentText { get; set; }
+        public string? CommentText { get; set; }
 
         //Navigation properties for related user and iPhone
         public User User { get; set; }

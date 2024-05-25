@@ -51,6 +51,7 @@ namespace App.Business.Services
         public IPhone GetIPhoneWithPriceAndDealers(int id)
         {
             var iphone = _db.Iphone.Include(i => i.DealerIphones)
+                .ThenInclude(i => i.Dealer)
                 .FirstOrDefault(i => i.IphoneID == id);
 
             return iphone;
@@ -62,8 +63,22 @@ namespace App.Business.Services
                 .Include(i => i.DealerIphones)
                 .ThenInclude(di => di.Dealer)
                 .ToList();
-            
+
             return iphones;
+        }
+
+        public List<Comment> GetCommentsByIphoneID(int id)
+        {
+            //var iphone = _db.Iphone.Where(i => i.IphoneID == id).ToList();
+            //var comments = iphone.First().Comments.ToList();
+            var comments = _db.Comments.Include(u=>u.User).Where(c => c.iPhoneID == id).ToList();            
+            return comments ?? new List<Comment>();
+        }
+
+        public void AddComment(Comment comment)
+        {
+            _db.Comments.Add(comment);
+            _db.SaveChanges();
         }
     }
 }
