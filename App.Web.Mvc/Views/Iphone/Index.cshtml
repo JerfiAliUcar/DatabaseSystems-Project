@@ -1,12 +1,17 @@
 ﻿@model List<IPhone>
 @{
     ViewData["Title"] = "Home Page";
+    foreach (var item in Model)
+    {
+        var iphonePrice = item.DealerIphones.First().Price;
+
+    }
 }
 
 <section class="py-5">
-    <h3 class="p-4" >Iphone Models</h3>
+    <h3 class="p-4">Iphone Models</h3>
     <div class="container px-4 px-lg-5 mt-5">
-        
+
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach (var item in Model)
             {
@@ -16,16 +21,17 @@
                         <img class="card-img-top" src="~/img/@item.ImageUrl" alt="..." />
                         <!-- Product details-->
                         <div class="card-body p-4">
-                            
-                            <div class="text-center">
+
+                            <div class="text-center ">
                                 <!-- Product name-->
                                 <h5 class="fw-bolder">@item.ModelName</h5>
                                 <!-- Product price-->
-                               @foreach (var dealerIphone in item.DealerIphones)
+                                @foreach (var dealerIphone in item.DealerIphones)
                                 {
-                                            @dealerIphone.Price 
-                               }
-                                
+                                    @dealerIphone.Price
+
+                                }
+
                             </div>
                         </div>
                         <!-- Product actions-->

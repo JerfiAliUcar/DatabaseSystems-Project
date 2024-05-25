@@ -1,5 +1,6 @@
 ﻿using App.Data.Entity;
 
+
 namespace App.Business.Services.Abstracts
 {
     public interface IiphoneService
@@ -11,5 +12,7 @@ namespace App.Business.Services.Abstracts
         public bool DeleteIphoneByID(int id);
         public IPhone GetIPhoneWithPriceAndDealers(int id);
         public List<IPhone> GetAllIPhonesWithPriceAndDealers();
+        public List<Comment> GetCommentsByIphoneID(int id);
+        public void AddComment(Comment comment);
     }
 }
