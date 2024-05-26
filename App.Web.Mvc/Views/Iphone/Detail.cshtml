@@ -54,33 +54,10 @@
         <div class="col-md-8 col-lg-6">
             <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                 <div class="card-body p-4">
-                    @foreach (var comment in Model.Comments)
-                    {
-                        <form asp-controller="Iphone" asp-action="Comment" method="post">
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Name</label>
-                                <input type="text"  name="Name" class="form-control" id="formGroupExampleInput" placeholder="Name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput2" class="form-label">Surname</label>
-                                <input type="text" name="Surname" class="form-control" id="formGroupExampleInput2" placeholder="Surname">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput3" class="form-label">Email Address</label>
-                                <input type="text" name="Email" class="form-control" id="formGroupExampleInput3" placeholder="Email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput4" class="form-label">Phone Number</label>
-                                <input type="text" name="Phone" class="form-control" id="formGroupExampleInput4" placeholder="Phone">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput5" class="form-label">Comment</label>
-                                <input type="text" name="CommentText" class="form-control" id="formGroupExampleInput4" placeholder="Your Comment">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Send</button>
-                        </form>
+
+                    @await Html.PartialAsync("_CommentForm", new CommentViewModel { IphoneID = Model.Iphone.IphoneID })
                         <hr />
-                    }
+                    
                     @foreach (var comment in Model.Comments)
                     {
                         <div class="card mb-4">
@@ -106,58 +83,3 @@
         </div>
     </div>
 </section>
-
-
-@* @model IPhone
-
-<section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="~/img/@Model.ImageUrl" alt="..." /></div>
-            <div class="col-md-6">
-                <h1 class="display-4 fw-bolder">@Model.ModelName</h1>
-                <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through">$45.00</span>
-                    <span>$40.00</span>
-                </div>
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-md-7 mb-3">
-                            <div class="card h-1">
-
-                                <div class="card-body">
-                                    <h5 class="card-title">@Model.ModelName</h5>
-                                    <p class="card-text">
-                                        <strong>Screen Size:</strong> @Model.ScreenSize inch<br>
-                                        <strong>CPU:</strong> @Model.CPU<br>
-                                        <strong>RAM:</strong> @Model.RAM GB<br>
-                                        <strong>Battery:</strong> @Model.Battery mAh<br>
-                                        <strong>Relase Year:</strong> @Model.ReleaseDate.Year <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <ol class="list-group list-group-item-success">
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">
-                                        @foreach (var item in ViewBag.dealerNameList)
-                                        {
-                                            @item.ToString()
-                                        }</div>
-                                    Content for list item
-                                </div>
-                                <button class="btn btn-primary">$@Model.DealerIphones.First().Price</button>
-                            </li>
-                        </ol>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
- *@

@@ -3,6 +3,7 @@ using App.Business.Services.Abstracts;
 using App.Data.Entity;
 using App.Web.Mvc.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace App.Web.Mvc.Controllers
 {
@@ -19,6 +20,7 @@ namespace App.Web.Mvc.Controllers
         public IActionResult Index()
         {
             var iphoneList = _iphoneService.GetAllIPhonesWithPriceAndDealers();
+            
             return View(iphoneList);
         }
 
@@ -50,25 +52,30 @@ namespace App.Web.Mvc.Controllers
             {
                 var user = new User
                 {
-                    Name=model.Name,
-                    Surname=model.Surname,
-                    Email=model.Email,
-                    Phone=model.Phone,
-                };
-
-                var comment = new Comment 
-                { 
-                    CommentText=model.CommentText,
-                    
+                    Name = model.Name,
+                    Surname = model.Surname,
+                    Email = model.Email,
+                    Phone = model.Phone,
                 };
 
                 _userService.InsertUser(user);
+
+                var userId = user.UserID;
+
+                var comment = new Comment
+                {
+                    CommentText = model.CommentText,
+                    UserID = userId,
+                    iPhoneID = model.IphoneID,
+                    User = user,
+                };
+
                 _iphoneService.AddComment(comment);
 
                 return RedirectToAction("Detail", new { id = model.IphoneID });
             }
 
-            return View("Detail",model);
+            return View("Detail", model);
         }
 
     }

@@ -77,6 +77,7 @@ namespace App.Business.Services
 
         public void AddComment(Comment comment)
         {
+
             _db.Comments.Add(comment);
             _db.SaveChanges();
         }
