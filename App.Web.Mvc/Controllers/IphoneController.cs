@@ -28,6 +28,7 @@ namespace App.Web.Mvc.Controllers
         {
 
             var iphone = _iphoneService.GetIPhoneWithPriceAndDealers(id);
+           // var iphoneOrder= iphone.DealerIphones.OrderByDescending(p => p.Price).ToList();
 
             if (iphone == null)
             {
@@ -35,11 +36,14 @@ namespace App.Web.Mvc.Controllers
             }
 
             var comments = _iphoneService.GetCommentsByIphoneID(id) ?? new List<Comment>();
+
+            var sortedDealerIphones = iphone.DealerIphones?.OrderBy(di => di.Price).ToList() ?? new List<DealerIphone>();
+
             var viewModel = new IphoneDetailViewModel
             {
                 Iphone = iphone,
                 Comments = comments,
-                DealerIphones = iphone.DealerIphones?.ToList() ?? new List<DealerIphone>()
+                DealerIphones = sortedDealerIphones?.ToList() ?? new List<DealerIphone>()
             };
 
             return View(viewModel);

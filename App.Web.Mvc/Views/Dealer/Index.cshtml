@@ -1,0 +1,36 @@
+﻿@model List<Dealer>
+
+<br />
+<h3 class="p-4">List of Users</h3>
+<div class="container-fluid">
+    <table class="table table-dark table-hover">
+
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+@*                 <th scope="col">Stock</th>                
+ *@
+            </tr>
+        </thead>
+        <tbody>
+          
+                @foreach (var dealer in Model)
+                {
+                    <tr>
+                        <th scope="row"></th>
+                        <td>@dealer.DealerID</td>
+                        <td>@dealer.DealerName</td>
+                        <td>@dealer.Description</td>
+@*                         <td>@dealer.DealerIphones.Count()</td>
+ *@
+                    </tr>
+                }
+           
+        </tbody>
+    </table>
+    @* <button class="btn btn-primary">Create</button>
+    <button class="btn btn-danger">Delete</button> *@
+</div>

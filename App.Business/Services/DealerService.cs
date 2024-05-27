@@ -3,6 +3,7 @@ using App.Data;
 using App.Data.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace App.Business.Services
         }
         public List<Dealer> GetAllDealers()
         {
-            var entityList = _db.Dealers.ToList();
+            var entityList = _db.Dealers.Include(d=>d.DealerIphones).ToList();
+                
             return entityList;
         }
         public Dealer GetDealerById(int id)
